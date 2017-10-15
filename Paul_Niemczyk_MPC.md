@@ -13,8 +13,8 @@ The following sections conform to the rubric required for this project.
 This MPC utilizes IPOPT to provide non-linear optimization to drive the car around the track.
 There are two objectives: 
 
-(1) Speed: if cost function sufficiently minimized, optimize speed
-(2) Follow planned trajectory: minmize error (Cross Track Error and Psi error) from trajectory center line.
+1. Speed: if cost function sufficiently minimized, optimize speed
+1. Follow planned trajectory: minmize error (Cross Track Error and Psi error) from trajectory center line.
 
 ### Variables: State & Actuators
 
