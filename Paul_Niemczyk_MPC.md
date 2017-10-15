@@ -1,5 +1,5 @@
 # Author: Paul Niemczyk
-Oct 2017
+Oct 2017 <br>
 Udacity Term 2 Project 5: MPC Project
 
 
@@ -106,18 +106,20 @@ I applied to two following pre-processing routines, for car translation/rotation
 ### Car translation/rotation
 
 The YouTube solution at https://www.youtube.com/watch?v=bOQuhpz3YfU&index=5&list=PLAwxTw4SYaPnfR7TzRZN-uxlxGbqxhtm2
-provided an ideal approach to detaling with reference coordinates, in which the reference grid was rotated so that the car's location was at the origin (0,0) and the car's heading angle psi was = 0 (horiziontal).
+provided an ideal approach to dealing with reference coordinates, in which the reference grid was rotated so that the car's location was at the origin (0,0) and the car's heading angle psi was = 0 (horiziontal).
 
 #### Waypoints & polynomial
-This involved translating/rotating all the waypoints, which made the polynomial fitting and evaluation functions easier because they didn't need to deal with any vertical lines (i.e., non-functions);
+This involved translating/rotating all the waypoints, which made the polynomial fitting and evaluation functions easier because they didn't need to deal with any vertical lines (i.e., non-functions).
+
+See main.cpp for the translation/rotation calculations.
 
 #### CTE calculation
-Under this rotated condition, CTE became just the y value along the reference polynomial, evaluated at modeled position x. Taht is, y was the distance above (away) from the reference line at position x.
+Under this rotated condition, CTE became just the y value along the reference polynomial, evaluated at modeled position x. That is, y was the distance above (away) from the reference line at position x.
 
 
 ### Delay -- before translation/rotation
 
-In order to incorporate the 100 ms actuator delay, I used the same motion model equations as above the projec the car's initial state 100 ms into the future, to compute new:
+In order to incorporate the 100 ms actuator delay, I used the same motion model equations as above to project the car's initial state 100 ms into the future, to compute new state variables:
 * x1
 * y1
 * psi1
@@ -131,7 +133,7 @@ These new predicted variables became the new initial state -- BEFORE applying th
 I described the required latency adjustments in the section above.
 The MPC controller works well with latency because the MPC uses motion equations to model what the projected trajectory of the car is. 
 
-Actuator delay can be modeled by using the same equations, to determine the car's state AFTER the actuator delay. The MPC works with that predicted state just like there were no delay at all.
+Actuator delay can be modeled by using the same equations, to determine the car's state AFTER the actuator delay. The MPC works with that predicted state as if there were no delay at all.
 
 Note: With this simulator, we are not given acceleration, just the 'throttle' value. So in the code, I used 'throttle' as a proxy for acceleration for approximately the same effect.
 
@@ -165,17 +167,21 @@ My final tuned values were:
 * AD<double> a_change_weight = 10.0; 					// a actuator smoothness weight
 
 
-My final speed was about 90 mph around the track without any issues.
+My final top speed was approximately 90 mph around the track without any issues.
 
-NOTE: I changed ref_v to 200 after I wrote this, and I still made it around the track with a top speed of approx 101 mph.
+NOTE: I changed ref_v to =200 after I wrote this, and I still made it around the track with a top speed of approx 101 mph.
 
 
 ## Conclusion
 
-My car made it around the track really well! It all depends on the quality of tuning and the quality of the waypoints provided as inputs. Fascinating project.
+My car made it around the track really well! A successful circumnavigation of the track requires:
+1. the right MPC tuning, and 
+1. appropriate waypoints provided as inputs. 
+
+A fascinating project.
 
 
-Thank you,
+Thank you, <br>
 Paul Niemczyk
 
 
